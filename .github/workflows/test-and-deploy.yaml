@@ -9,3 +9,17 @@ jobs:
       run: yarn
     - name: Run tests
       run: yarn test
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy on Qovery
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Deploy on Qovery
+        uses: Qovery/qovery-action@main
+        id: qovery
+        with:
+          qovery-organization-id: 4f87eada-1799-4beb-a281-9610400586c0 
+          qovery-environment-id: 8adb909a-c5d9-4756-9920-cdc7ddb776bd
+          qovery-application-id: 0b145e1e-8c76-4872-a75c-74b216f4dac0
+          qovery-api-token: ${{secrets.QOVERY_API_TOKEN}}
