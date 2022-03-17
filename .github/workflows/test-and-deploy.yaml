@@ -10,6 +10,7 @@ jobs:
     - name: Run tests
       run: yarn test
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     name: Deploy on Qovery
     steps:
