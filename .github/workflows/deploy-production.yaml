@@ -1,10 +1,8 @@
 name: Deploy to production
-
 on:
-  pull_request:
+  push:
     branches:
       - main
-
 jobs:
   test-and-deploy:
     uses: ./.github/workflows/test-and-deploy.yaml
