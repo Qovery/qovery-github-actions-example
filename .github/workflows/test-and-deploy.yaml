@@ -2,12 +2,18 @@ name: Test And Deploy to Qovery
 on:
   workflow_call:
     inputs:
+      organization-id:
+        required: true
+        type: string     
       environment-id:
         required: true
         type: string 
       application-id:
         required: true
         type: string                        
+    secrets:
+      api-token:
+        required: true
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -28,7 +34,7 @@ jobs:
         uses: Qovery/qovery-action@main
         id: qovery
         with:
-          qovery-organization-id: 4f87eada-1799-4beb-a281-9610400586c0 
+          qovery-organization-id: ${{ inputs.organization-id }} 
           qovery-environment-id: ${{ inputs.environment-id }}
           qovery-application-id: ${{ inputs.application-id }}
-          qovery-api-token: ${{ secrets.QOVERY_API_TOKEN }}
+          qovery-api-token: ${{ secrets.api-token }}
