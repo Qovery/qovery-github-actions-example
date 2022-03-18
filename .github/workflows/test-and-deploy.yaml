@@ -8,7 +8,7 @@ on:
       environment-id:
         required: true
         type: string 
-      application-id:
+      application-ids:
         required: true
         type: string                        
     secrets:
@@ -31,10 +31,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Deploy on Qovery
-        uses: Qovery/qovery-action@main
+        uses: l0ck3/qovery-action@main
         id: qovery
         with:
           qovery-organization-id: ${{ inputs.organization-id }} 
           qovery-environment-id: ${{ inputs.environment-id }}
-          qovery-application-id: ${{ inputs.application-id }}
+          qovery-application-ids: ${{ inputs.application-ids }}
           qovery-api-token: ${{ secrets.api-token }}
