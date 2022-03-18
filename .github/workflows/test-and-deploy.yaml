@@ -31,7 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Deploy on Qovery
-        uses: l0ck3/qovery-action@main
+        uses: l0ck3/qovery-github-actions@main
         id: qovery
         with:
           qovery-organization-id: ${{ inputs.organization-id }} 
