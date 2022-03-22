@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # PROJECT_ID=$PROJECT_ID
 # BASE_ENVIRONMENT=$ENV_NAME
