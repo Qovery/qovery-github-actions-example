@@ -1,0 +1,16 @@
+name: Create preview environment
+on:
+  pull_request:
+    branches:    
+      - feature/**
+jobs:
+  create-preview-environment:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_ID: 4360c628-0cee-4b26-b89b-0777a7184533
+      BASE_ENVIRONMENT: staging
+      QOVERY_API_TOKEN: ${{ secrets.QOVERY_API_TOKEN }}
+    steps:
+      - name: Run build script
+        run: ./.github/scripts/create-preview-environment.sh
+        shell: bash
