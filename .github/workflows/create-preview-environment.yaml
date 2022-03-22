@@ -2,8 +2,8 @@ name: Create preview environment
 on:
   pull_request:
     types: [opened, reopened]
-    branches:    
-      - feature/**
+    # branches:    
+    #   - feature/**
 jobs:
   create-preview-environment:
     runs-on: ubuntu-latest
