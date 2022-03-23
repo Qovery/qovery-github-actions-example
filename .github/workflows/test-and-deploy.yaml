@@ -23,18 +23,28 @@ jobs:
       run: yarn
     - name: Run tests
       run: yarn test
-  deploy:
-    needs: test
+  # deploy:
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   name: Deploy on Qovery
+  #   steps:
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      # # - name: Deploy on Qovery
+      # #   uses: Qovery/qovery-action@v0.10
+      # #   id: qovery
+      # #   with:
+      # #     qovery-organization-id: ${{ inputs.organization-id }} 
+      # #     qovery-environment-id: ${{ inputs.environment-id }}
+      # #     qovery-application-ids: ${{ inputs.application-ids }}
+      # #     qovery-api-token: ${{ secrets.api-token }}
+  add-run-id-to-env-name:
     runs-on: ubuntu-latest
-    name: Deploy on Qovery
+    env:
+      environment-id: ${{ inputs.environment-id }}
+      qovery-api-token: ${{ secrets.api-token }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Deploy on Qovery
-        uses: Qovery/qovery-action@v0.10
-        id: qovery
-        with:
-          qovery-organization-id: ${{ inputs.organization-id }} 
-          qovery-environment-id: ${{ inputs.environment-id }}
-          qovery-application-ids: ${{ inputs.application-ids }}
-          qovery-api-token: ${{ secrets.api-token }}
+      - uses: actions/checkout@v2
+      - name: Create preview environment on Qovery
+        run: ./.github/scripts/add-run-id-to-env-name.sh
+        shell: bash
