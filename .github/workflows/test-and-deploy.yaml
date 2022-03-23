@@ -23,13 +23,3 @@ jobs:
       run: yarn
     - name: Run tests
       run: yarn test
-  add-run-id-to-env-name:
-    runs-on: ubuntu-latest
-    env:
-      environment-id: ${{ inputs.environment-id }}
-      qovery-api-token: ${{ secrets.api-token }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Create preview environment on Qovery
-        run: ./.github/scripts/add-run-id-to-env-name.sh
-        shell: bash
