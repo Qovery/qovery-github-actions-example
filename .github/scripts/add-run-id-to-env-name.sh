@@ -3,7 +3,7 @@
 set -eo pipefail
 
 echo "Getting the current environment name"
-envName=$(curl -fs -X GET -H "Authorization: Token $QOVERY_API_TOKEN" \
+envName=$(curl -fsv -X GET -H "Authorization: Token $QOVERY_API_TOKEN" \
     "https://api.qovery.com/environment/$ENVIRONMENT_ID" | jq -r .name)
 
 if [[ $envName == *"- #"* ]];
@@ -17,7 +17,7 @@ echo "New environment name: $newEnvName"
 
 echo "Renaming the base environment ..."
 
-curl -fs -o /dev/null -X PUT -d "{\"name\": \"$newEnvName\"}" -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
+curl -fsv -o /dev/null -X PUT -d "{\"name\": \"$newEnvName\"}" -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
     "https://api.qovery.com/environment/$ENVIRONMENT_ID"
 
 echo "Done!"
