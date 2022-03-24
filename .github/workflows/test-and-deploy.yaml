@@ -15,8 +15,31 @@ on:
       api-token:
         required: true
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: yarn
+    - name: Run tests
+      run: yarn test
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    name: Deploy on Qovery
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Deploy on Qovery
+        uses: Qovery/qovery-action@v0.10
+        id: qovery
+        with:
+          qovery-organization-id: ${{ inputs.organization-id }} 
+          qovery-environment-id: ${{ inputs.environment-id }}
+          qovery-application-ids: ${{ inputs.application-ids }}
+          qovery-api-token: ${{ secrets.api-token }}
   add-run-id-to-env-name:
-    # needs: deploy
+    needs: deploy
     runs-on: ubuntu-latest
     env:
       ENVIRONMENT_ID: ${{ inputs.environment-id }}
