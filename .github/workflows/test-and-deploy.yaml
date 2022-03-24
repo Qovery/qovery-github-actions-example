@@ -39,6 +39,7 @@ jobs:
           qovery-application-ids: ${{ inputs.application-ids }}
           qovery-api-token: ${{ secrets.api-token }}
   add-run-id-to-env-name:
+    needs: deploy
     runs-on: ubuntu-latest
     env:
       environment-id: ${{ inputs.environment-id }}
