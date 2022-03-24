@@ -19,8 +19,8 @@ jobs:
     # needs: deploy
     runs-on: ubuntu-latest
     env:
-      environment-id: ${{ inputs.environment-id }}
-      qovery-api-token: ${{ secrets.api-token }}
+      ENVIRONMENT_ID: ${{ inputs.environment-id }}
+      QOVERY_API_TOKEN: ${{ secrets.api-token }}
     steps:
       - uses: actions/checkout@v2
       - name: Add Workflow execution ID to env name
