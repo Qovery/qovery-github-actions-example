@@ -46,6 +46,6 @@ jobs:
       qovery-api-token: ${{ secrets.api-token }}
     steps:
       - uses: actions/checkout@v2
-      - name: Create preview environment on Qovery
-        run: ./.github/scripts/create-preview-environment.sh
+      - name: Add Workflow execution ID to env name
+        run: ./.github/scripts/add-run-id-to-env-name.sh
         shell: bash
