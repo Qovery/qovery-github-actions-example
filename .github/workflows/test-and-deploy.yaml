@@ -16,7 +16,7 @@ on:
         required: true
 jobs:
   add-run-id-to-env-name:
-    needs: deploy
+    # needs: deploy
     runs-on: ubuntu-latest
     env:
       environment-id: ${{ inputs.environment-id }}
